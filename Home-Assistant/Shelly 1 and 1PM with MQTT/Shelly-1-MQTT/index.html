@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<title>Shelly 1 with MQTT - IOT</title>
+<link href="../../../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="None" data-md-color-primary="None" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#shelly-1-with-mqtt">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="IOT" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="IOT">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            IOT
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Shelly 1 with MQTT
+            
+          </span>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="IOT" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="IOT">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    IOT
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        IOT
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2">
+          Home Assistant
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Home Assistant" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          Home Assistant
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Faire%20un%20plan/">
+        Faire un plan
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Faire%20une%20automation/">
+        Faire une automation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Installer%20un%20relay%20pour%20radiateur/">
+        Relais Qubino Flush 2 sur un radiateur électrique
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Tasmota-plug/">
+        Tasmota - Athom Plug V2
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Thermostat/">
+        Thermostat
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_6" id="__nav_2_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_6">
+          DHT22   EspHome
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="DHT22   EspHome" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_6">
+<span class="md-nav__icon md-icon"></span>
+          DHT22   EspHome
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../DHT22%20-%20EspHome/ESP-01S/">
+        ESP-01S ( work! )
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../DHT22%20-%20EspHome/ESP32/">
+        ESP32
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../DHT22%20-%20EspHome/ESP8266-D1-mini/">
+        ESP8266 DI mini
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../DHT22%20-%20EspHome/accuracy/">
+        DHT22 accuracy
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_7" id="__nav_2_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_7">
+          ESP32 CAM
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="ESP32 CAM" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_7">
+<span class="md-nav__icon md-icon"></span>
+          ESP32 CAM
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../ESP32-CAM/">
+        ESP32-CAM Installation
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_8" id="__nav_2_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_8">
+          FAQ
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="FAQ" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_8">
+<span class="md-nav__icon md-icon"></span>
+          FAQ
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../FAQ/readme/">
+        FAQ
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_9" id="__nav_2_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_9">
+          Flash ESP
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Flash ESP" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_9">
+<span class="md-nav__icon md-icon"></span>
+          Flash ESP
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Flash%20ESP/">
+        Flash ESP
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" id="__nav_2_10" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_10">
+          Integration ESPHome (add   remove)
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Integration ESPHome (add   remove)" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_10">
+<span class="md-nav__icon md-icon"></span>
+          Integration ESPHome (add   remove)
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Integration%20ESPHome%20%28add%20-%20remove%29/">
+        Integration ESPhome
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_11" id="__nav_2_11" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_11">
+          MQTT
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="MQTT" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_11">
+<span class="md-nav__icon md-icon"></span>
+          MQTT
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../MQTT/esp32-MQTT-DHT22-Led/">
+        ESP32 + DHT22 + LED
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../MQTT/esp32-MQTT-DHT22/">
+        ESP32 + DHT22
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_12" id="__nav_2_12" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_12">
+          MySensors
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="MySensors" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_12">
+<span class="md-nav__icon md-icon"></span>
+          MySensors
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../MySensors/Libraries/">
+        DHT22 Libraries
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../MySensors/MySensor/">
+        MySensors integration
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_13" id="__nav_2_13" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_13">
+          PZEM 004T energy meter
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="PZEM 004T energy meter" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_13">
+<span class="md-nav__icon md-icon"></span>
+          PZEM 004T energy meter
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../PZEM-004T-energy-meter/PZEM-004T/">
+        PZEM 004T
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_14" id="__nav_2_14" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_14">
+          Shelly 1 and 1PM with MQTT
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Shelly 1 and 1PM with MQTT" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_14">
+<span class="md-nav__icon md-icon"></span>
+          Shelly 1 and 1PM with MQTT
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Shelly 1 with MQTT
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Shelly 1 with MQTT
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shelly-1-shelly-1pm">
+    Shelly 1 &amp; Shelly 1PM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#wire">
+    Wire
+  </a>
+<nav aria-label="Wire" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shelly-1">
+    Shelly 1
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shelly-1pm">
+    Shelly 1PM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cumulus-shelly-1pm">
+    Cumulus &amp; Shelly 1PM
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration">
+    Configuration
+  </a>
+<nav aria-label="Configuration" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shelly-configuration">
+    Shelly configuration
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#home-assistant-configuration">
+    Home Assistant configuration
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_15" id="__nav_2_15" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_15">
+          Shelly EM energy meter
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Shelly EM energy meter" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_15">
+<span class="md-nav__icon md-icon"></span>
+          Shelly EM energy meter
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Shelly-EM-energy-meter/Shelly-EM-MQTT/">
+        Shelly EM with MQTT
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
+          Memo Git
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Memo Git" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          Memo Git
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Memo-Git/">
+        Memo-Git
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shelly-1-shelly-1pm">
+    Shelly 1 &amp; Shelly 1PM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#wire">
+    Wire
+  </a>
+<nav aria-label="Wire" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shelly-1">
+    Shelly 1
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shelly-1pm">
+    Shelly 1PM
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cumulus-shelly-1pm">
+    Cumulus &amp; Shelly 1PM
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration">
+    Configuration
+  </a>
+<nav aria-label="Configuration" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shelly-configuration">
+    Shelly configuration
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#home-assistant-configuration">
+    Home Assistant configuration
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="shelly-1-with-mqtt">Shelly 1 with MQTT</h1>
+<p><strong>How to use Shelly 1 &amp; Shelly 1PM with Home Assistant</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>An other interested page is https://sequr.be/blog/2020/10/getting-started-with-mqtt-and-home-assistant-and-shelly/</p>
+</div>
+<h3 id="shelly-1-shelly-1pm">Shelly 1 &amp; Shelly 1PM</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/IMG_4303.jpg"><img alt="" src="../Images/IMG_4303.jpg" width="320"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/IMG_4326.JPG"><img alt="" src="../Images/IMG_4326.JPG" width="290"/></a></p>
+<h2 id="wire">Wire</h2>
+<h3 id="shelly-1">Shelly 1</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/IMG_4301.jpg"><img alt="" src="../Images/IMG_4301.jpg" width="300"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/IMG_4302.jpg"><img alt="" src="../Images/IMG_4302.jpg" width="280"/></a></p>
+<div class="admonition danger">
+<p class="admonition-title">Don't link SW to I, this desable the manual switch.</p>
+</div>
+<h3 id="shelly-1pm">Shelly 1PM</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../../Images/Shelly-1PM/wire.png"><img alt="" src="../../Images/Shelly-1PM/wire.png" width="300"/></a></p>
+<h3 id="cumulus-shelly-1pm">Cumulus &amp; Shelly 1PM</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/IMG_4333.jpg"><img alt="" src="../Images/IMG_4333.jpg" width="280"/></a></p>
+<div class="admonition danger">
+<p class="admonition-title">Don't link SW to I, this desable the manual switch.</p>
+</div>
+<h2 id="configuration">Configuration</h2>
+<h3 id="shelly-configuration">Shelly configuration</h3>
+<p>Plug in the Shelly. It does not appear on the network.
+You have to go on the Shelly app first to declare it.
+It's not necessary to go to the end of the installation.
+We can stop when we ask for the name of the device.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/IMG_4305.PNG"><img alt="" src="../Images/IMG_4305.PNG" width="150"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/IMG_4306.PNG"><img alt="" src="../Images/IMG_4306.PNG" width="150"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/IMG_4307.PNG"><img alt="" src="../Images/IMG_4307.PNG" width="150"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/IMG_4308.PNG"><img alt="" src="../Images/IMG_4308.PNG" width="150"/></a></p>
+<p>You can now find the device on the networker. In my example the IP of the device is 10.0.4.
+Go to the web interface of the Shelly and <strong>remove the connection to the cloud</strong>.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/2022-11-16_19-03-59-ck26n.png"><img alt="" src="../Images/2022-11-16_19-03-59-ck26n.png" width="500"/></a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Update</strong> the device. It's necessery to have <strong>CoIot</strong> protocol.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/2022-11-16_19-24-42-hapwu.png"><img alt="" src="../Images/2022-11-16_19-24-42-hapwu.png" width="500"/></a></p>
+</div>
+<p>To configure MQTT protocol, fill in the fields with values defined in Home Assistant.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/2022-11-16_19-25-58-zzxi1.png"><img alt="" src="../Images/2022-11-16_19-25-58-zzxi1.png" width="400"/></a></p>
+<div class="admonition info">
+<p class="admonition-title">Username and password are in the Mosquitto configuration. Password is a very long string</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/2022-11-16_19-20-23-3sqrg.png"><img alt="" src="../Images/2022-11-16_19-20-23-3sqrg.png" width="200"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/2022-11-16_19-20-32-61eiw.png"><img alt="" src="../Images/2022-11-16_19-20-32-61eiw.png" width="300"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/2022-11-16_19-20-48-pe6is.png"><img alt="" src="../Images/2022-11-16_19-20-48-pe6is.png" width="400"/></a></p>
+</div>
+<p>Set "Restore Last Mode - Configure Shelly device to Restore the last mode it was in, when it has power."</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../../Images/Shelly-1PM/2022-12-18_11-28-04.png"><img alt="" src="../../Images/Shelly-1PM/2022-12-18_11-28-04.png" width="380"/></a></p>
+<p>Now, you can reboot the Shelly.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/2022-11-16_19-27-19-yhfdw.png"><img alt="" src="../Images/2022-11-16_19-27-19-yhfdw.png" width="400"/></a></p>
+<h3 id="home-assistant-configuration">Home Assistant configuration</h3>
+<p>The configuration of the Shelly device is now finished. Go to Home Assistant for the last step.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/2022-11-16_20-02-51-kyree.png"><img alt="" src="../Images/2022-11-16_20-02-51-kyree.png" width="200"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/2022-11-16_19-28-09-fri3x.png"><img alt="" src="../Images/2022-11-16_19-28-09-fri3x.png" width="400"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/2022-11-16_19-28-25-omh8v.png"><img alt="" src="../Images/2022-11-16_19-28-25-omh8v.png" width="300"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="auto" href="../Images/2022-11-16_20-31-39-qci2t.png"><img alt="" src="../Images/2022-11-16_20-31-39-qci2t.png" width="300"/></a></p>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: PZEM 004T" class="md-footer__link md-footer__link--prev" href="../../PZEM-004T-energy-meter/PZEM-004T/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              PZEM 004T
+            </div>
+</div>
+</a>
+<a aria-label="Next: Shelly EM with MQTT" class="md-footer__link md-footer__link--next" href="../../Shelly-EM-energy-meter/Shelly-EM-MQTT/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              Shelly EM with MQTT
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="../../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
